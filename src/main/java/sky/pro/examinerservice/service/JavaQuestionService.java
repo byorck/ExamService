@@ -2,30 +2,37 @@ package sky.pro.examinerservice.service;
 
 import org.springframework.stereotype.Service;
 import sky.pro.examinerservice.domain.Question;
+import sky.pro.examinerservice.repository.JavaQuestionRepository;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class JavaQuestionService implements QuestionService {
-    private Set<Question> questions = new HashSet<>();
+    private JavaQuestionRepository repository;
 
+    public JavaQuestionService(JavaQuestionRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
     public Question add(String question, String answer) {
-        Question questionTemp = new Question(question, answer);
-        questions.add(questionTemp);
-        return questionTemp;
+        return repository.add(question,answer);
     }
 
+    @Override
     public Question remove(Question question) {
-        questions.removeIf(question::equals);
-        return question;
+        return repository.remove(question);
     }
 
+    @Override
     public Collection<Question> getAll() {
-        return questions;
+        return repository.getAll();
     }
 
+    @Override
     public Question getRandomQuestion() {
+        Collection<Question> questions = repository.getAll();
         if (questions.isEmpty()) {
             throw new IndexOutOfBoundsException("Нет доступных вопросов");
         }

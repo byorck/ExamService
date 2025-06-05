@@ -2,23 +2,24 @@ package sky.pro.examinerservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sky.pro.examinerservice.domain.Question;
-import sky.pro.examinerservice.service.QuestionService;
+import sky.pro.examinerservice.service.JavaQuestionService;
 
 import java.util.Collection;
 
 @RestController
-@RequestMapping("exam/java")
-public class JavaController {
-    private QuestionService service;
+@RequestMapping("/exam/java")
+public class JavaQuestionController {
+    private JavaQuestionService service;
 
-    JavaController(QuestionService service) {
+    JavaQuestionController(JavaQuestionService service) {
         this.service = service;
     }
 
     @GetMapping("/add")
-    Question addQuestion(String question, String answer) {
+    Question addQuestion(@RequestParam String question, @RequestParam String answer) {
         return service.add(question, answer);
     }
 
@@ -28,7 +29,7 @@ public class JavaController {
     }
 
     @GetMapping("/remove")
-    Question removeQuestion(String question, String answer) {
+    Question removeQuestion(@RequestParam String question, @RequestParam String answer) {
         Question question1 = new Question(question, answer);
         return service.remove(question1);
     }
