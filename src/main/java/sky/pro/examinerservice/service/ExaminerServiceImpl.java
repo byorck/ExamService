@@ -9,8 +9,8 @@ import java.util.Random;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    Random random;
-    QuestionService questionService;
+    private Random random;
+    private QuestionService questionService;
 
     public ExaminerServiceImpl(QuestionService questionService, Random random) {
         this.questionService = questionService;
