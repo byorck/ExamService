@@ -7,8 +7,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import sky.pro.examinerservice.domain.Question;
 
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,12 +20,12 @@ class ExaminerServiceImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        examinerService = new ExaminerServiceImpl(List.of(questionService), new Random());
     }
 
     @Test
     void getQuestions_ReturnsCorrectAmount() {
         int amount = 4;
-        examinerService = new ExaminerServiceImpl(questionService, new Random());
         Question question = new Question("String - объект?", "Да");
         Mockito.when(questionService.getRandomQuestion()).thenReturn(question);
 
@@ -39,7 +38,6 @@ class ExaminerServiceImplTest {
     @Test
     void getQuestions_ReturnsCorrectQuestions() {
         int amount = 3;
-        examinerService = new ExaminerServiceImpl(questionService, new Random());
         Question question = new Question("String - объект?", "Да");
         Mockito.when(questionService.getRandomQuestion()).thenReturn(question);
 
