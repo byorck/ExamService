@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class JavaQuestionService implements QuestionService {
-    Set<Question> questions = new HashSet<>();
+    private Set<Question> questions = new HashSet<>();
 
     public Question add(String question, String answer) {
         Question questionTemp = new Question(question, answer);

@@ -33,7 +33,6 @@ class JavaQuestionServiceTest {
         Question question2 = new Question("String - объект?", "Да");
 
         Question removed = javaQuestionService.remove(question2);
-
         Collection<Question> questionCollection = javaQuestionService.getAll();
 
         assertEquals(question1, question2);
@@ -63,7 +62,6 @@ class JavaQuestionServiceTest {
         javaQuestionService.add("int - объект?", "Нет");
 
         Question randomQuestion = javaQuestionService.getRandomQuestion();
-
         Collection<Question> allQuestions = javaQuestionService.getAll();
 
         assertTrue(allQuestions.contains(randomQuestion));

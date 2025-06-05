@@ -28,13 +28,11 @@ class ExaminerServiceImplTest {
         int amount = 4;
         examinerService = new ExaminerServiceImpl(questionService, new Random());
         Question question = new Question("String - объект?", "Да");
-
         Mockito.when(questionService.getRandomQuestion()).thenReturn(question);
 
         Collection<Question> questions = examinerService.getQuestions(amount);
 
         assertEquals(amount, questions.size());
-
         Mockito.verify(questionService, Mockito.times(amount)).getRandomQuestion();
     }
 
@@ -43,7 +41,6 @@ class ExaminerServiceImplTest {
         int amount = 3;
         examinerService = new ExaminerServiceImpl(questionService, new Random());
         Question question = new Question("String - объект?", "Да");
-
         Mockito.when(questionService.getRandomQuestion()).thenReturn(question);
 
         Collection<Question> questions = examinerService.getQuestions(amount);
@@ -51,7 +48,6 @@ class ExaminerServiceImplTest {
         for (Question q : questions) {
             assertEquals(question, q);
         }
-
         Mockito.verify(questionService, Mockito.times(amount)).getRandomQuestion();
     }
 }

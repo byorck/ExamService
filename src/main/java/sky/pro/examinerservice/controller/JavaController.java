@@ -11,7 +11,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("exam/java")
 public class JavaController {
-    QuestionService service;
+    private QuestionService service;
 
     JavaController(QuestionService service) {
         this.service = service;
